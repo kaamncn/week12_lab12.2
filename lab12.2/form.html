@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        var xmlHttp;
+        function send() {
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = showResult;
+            var name = document.getElementById("name").value;
+            var url = "name.php?name=" + name;
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send();
+        } 
+        function showResult()
+        {
+            if(xmlHttp.readyState == 4)
+            {
+                if(xmlHttp.status == 200)
+                {
+                    document.getElementById("result").innerHTML = xmlHttp.responseText;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    ค้นหา Username : <input type="text" id="name" onkeyup="send()">
+    <div id="result"></div>
+</body>
+
+</html>
